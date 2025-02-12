@@ -11,7 +11,7 @@ struct ContentView: View {
   
   @State private var resultMessage: String = ""
   
-  enum Dice: Int {
+  enum Dice: Int, CaseIterable {
     case four = 4
     case six = 6
     case eight = 8
@@ -43,94 +43,23 @@ struct ContentView: View {
       
       Spacer()
       
-      Group {
-        HStack {
-          Button {
-            resultMessage = "You rolled \(Dice.four.roll()) on a \(Dice.four.rawValue) sided dice."
-          } label: {
-            Text("\(Dice.four.rawValue) Sided")
+      LazyVGrid(columns: [GridItem(.adaptive(minimum: 102))]) {
+        Group {
+          ForEach(Dice.allCases, id: \.self) { dice in
+            Button {
+              resultMessage = "You rolled \(dice.roll()) on a\n\(dice.rawValue) sided dice."
+            } label: {
+              Text("\(dice.rawValue) Sided")
+            }
           }
+          .buttonStyle(.bordered)
+          .tint(.red)
           .overlay {
             RoundedRectangle(cornerRadius: 12)
               .stroke(.red, lineWidth: 2)
           }
-          
-          Spacer()
-          
-          Button {
-            resultMessage = "You rolled \(Dice.six.roll()) on a \(Dice.six.rawValue) sided dice."
-          } label: {
-            Text("\(Dice.six.rawValue) Sided")
-          }
-          .overlay {
-            RoundedRectangle(cornerRadius: 12)
-              .stroke(.red, lineWidth: 2)
-          }
-          
-          Spacer()
-          
-          Button {
-            resultMessage = "You rolled \(Dice.eight.roll()) on a \(Dice.eight.rawValue) sided dice."
-          } label: {
-            Text("\(Dice.eight.rawValue) Sided")
-          }
-          .overlay {
-            RoundedRectangle(cornerRadius: 12)
-              .stroke(.red, lineWidth: 2)
-          }
-        } // End hStack
-        
-        HStack {
-          Button {
-            resultMessage = "You rolled \(Dice.ten.roll()) on a \(Dice.ten.rawValue) sided dice."
-          } label: {
-            Text("\(Dice.ten.rawValue) Sided")
-          }
-          .overlay {
-            RoundedRectangle(cornerRadius: 12)
-              .stroke(.red, lineWidth: 2)
-          }
-          
-          Spacer()
-          
-          Button {
-            resultMessage = "You rolled \(Dice.twelve.roll()) on a \(Dice.twelve.rawValue) sided dice."
-          } label: {
-            Text("\(Dice.twelve.rawValue) Sided")
-          }
-          .overlay {
-            RoundedRectangle(cornerRadius: 12)
-              .stroke(.red, lineWidth: 2)
-          }
-          
-          Spacer()
-          
-          Button {
-            resultMessage = "You rolled \(Dice.twenty.roll()) on a \(Dice.twenty.rawValue) sided dice."
-          } label: {
-            Text("\(Dice.twenty.rawValue) Sided")
-          }
-          .overlay {
-            RoundedRectangle(cornerRadius: 12)
-              .stroke(.red, lineWidth: 2)
-          }
-        } // End hStack
-        
-        HStack {
-          Button {
-            resultMessage = "You rolled \(Dice.hundred.roll()) on a \(Dice.hundred.rawValue) sided dice."
-          } label: {
-            Text("\(Dice.hundred.rawValue) Sided")
-          }
-          .overlay {
-            RoundedRectangle(cornerRadius: 12)
-              .stroke(.red, lineWidth: 2)
-          }
-        } // End hStack
+        }
       }
-      .font(.title2)
-      .buttonStyle(.bordered)
-      .tint(.red)
     }
     .padding()
   }
