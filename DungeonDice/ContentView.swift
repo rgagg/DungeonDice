@@ -28,7 +28,7 @@ extension ContentView {
       .font(Font.custom("Papyrus", size: 60))
       .fontWeight(.black)
       .foregroundStyle(.red)
-      .minimumScaleFactor(0.75)
+      .minimumScaleFactor(0.5)
       .lineLimit(1)
   }
   
@@ -37,7 +37,7 @@ extension ContentView {
       .font(Font.custom("Papyrus", size: 60))
       .fontWeight(.medium)
       .multilineTextAlignment(.center)
-      .minimumScaleFactor(0.75)
+      .minimumScaleFactor(0.5)
       .lineLimit(2)
       .frame(height: 150)
   }

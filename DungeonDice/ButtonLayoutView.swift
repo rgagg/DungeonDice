@@ -11,7 +11,7 @@ struct ButtonLayoutView: View {
   @State private var buttonsLeftOver = 0 // Number of button on last row
   @Binding var resultMessage: String
   
-  private let buttonwidth: CGFloat = 102 // Button width
+  private let buttonwidth: CGFloat = 90 // Button width
   private let spacing: CGFloat = 0 // LazyVGrid spacing between buttons
   let horizontalPadding: CGFloat = 20
   
