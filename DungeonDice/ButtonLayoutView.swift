@@ -10,8 +10,9 @@ import SwiftUI
 struct ButtonLayoutView: View {
   @State private var buttonsLeftOver = 0 // Number of button on last row
   @Binding var resultMessage: String
+  @Binding var animationTrigger: Bool
   
-  private let buttonwidth: CGFloat = 90 // Button width
+  private let buttonwidth: CGFloat = 102 // Button width
   private let spacing: CGFloat = 0 // LazyVGrid spacing between buttons
   let horizontalPadding: CGFloat = 20
   
@@ -49,6 +50,7 @@ struct ButtonLayoutView: View {
           
           Button {
             resultMessage = "You rolled \(dice.roll()) on a\n\(dice.rawValue) sided dice."
+            animationTrigger.toggle()
           } label: {
             Text("\(dice.rawValue) Sided")
           }
@@ -65,6 +67,7 @@ struct ButtonLayoutView: View {
         ForEach(Dice.allCases.suffix(buttonsLeftOver), id: \.self) { dice in
           Button {
             resultMessage = "You rolled \(dice.roll()) on a\n\(dice.rawValue) sided dice."
+            animationTrigger.toggle()
           } label: {
             Text("\(dice.rawValue) Sided")
           }
